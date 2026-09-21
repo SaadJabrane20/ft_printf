@@ -6,11 +6,11 @@
 #    By: sajabran <sajabran@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/21 18:45:06 by sajabran          #+#    #+#              #
-#    Updated: 2026/09/21 19:48:06 by sajabran         ###   ########.fr        #
+#    Updated: 2026/09/21 22:54:15 by sajabran         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= ftprintf.a
+NAME		= libftprintf.a
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror

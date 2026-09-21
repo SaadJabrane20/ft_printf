@@ -24,7 +24,7 @@ ft_printf()
     ├── %c ──► ft_putchar()
     ├── %s ──► ft_putstr()
     ├── %d ──► ft_putnbr()
-    ├── %i ──► TODO
+    ├── %i ──► ft_putnbr()
     ├── %u ──► ft_putnbr_unsigned()
     ├── %x/%X ──► ft_put_hex()
     └── %p ──► ft_print_pointer()
@@ -42,8 +42,7 @@ functions answer **"how do I print it?"**.
   `%c`         Character                  ✅
   `%s`         String                     ✅
   `%p`         Pointer address            ✅
-  `%d`         Signed decimal integer     ✅
-  `%i`         Signed decimal integer     ⚠️ Parser support still needed
+  `%d %i`      Signed decimal integer     ✅
   `%u`         Unsigned decimal integer   ✅
   `%x`         Lowercase hexadecimal      ✅
   `%X`         Uppercase hexadecimal      ✅
@@ -433,13 +432,13 @@ exactly the correct variadic argument type.
 -   [x] `%s`
 -   [x] `%p`
 -   [x] `%d`
--   [ ] `%i`
+-   [x] `%i`
 -   [x] `%u`
 -   [x] `%x`
 -   [x] `%X`
 -   [x] `%%`
--   [ ] Correct library name: `libftprintf.a`
--   [ ] Full mandatory test suite
+-   [x] Correct library name: `libftprintf.a`
+-   [x] Full mandatory test suite
 -   [ ] Norminette clean
 -   [ ] Memory/UB checks
 -   [ ] Return-value comparison against `printf`
