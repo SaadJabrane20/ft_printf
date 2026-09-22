@@ -6,7 +6,7 @@
 /*   By: sajabran <sajabran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 18:40:25 by sajabran          #+#    #+#             */
-/*   Updated: 2026/09/21 19:31:07 by sajabran         ###   ########.fr       */
+/*   Updated: 2026/09/22 19:46:12 by sajabran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	ft_print_pointer(void *ptr)
 	int	count;
 
 	count = 0;
-    if (ptr == NULL)
-    {
-        write(1, "(nil)", 5);
-        return (5);
-    }
-    write(1, "0x", 2);
+	if (ptr == NULL)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	write(1, "0x", 2);
 	count = 2;
-    count += put_hex((unsigned long)ptr, "0123456789abcdef");
+	count += put_hex((unsigned long)ptr, "0123456789abcdef");
 	return (count);
 }
