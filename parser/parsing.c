@@ -6,7 +6,7 @@
 /*   By: sajabran <sajabran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 15:14:43 by sajabran          #+#    #+#             */
-/*   Updated: 2026/09/21 21:43:57 by sajabran         ###   ########.fr       */
+/*   Updated: 2026/09/22 15:38:33 by sajabran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	parser(const char *format, va_list args)
 				count += ft_putchar(va_arg(args, int));
 			else if (format[i] == 's')
 				count += ft_putstr(va_arg(args, char *));
-			else if (format[i] == 'd')
+			else if (format[i] == 'd' || format[i] == 'i')
 				count += ft_putnbr(va_arg(args, int));
 			else if (format[i] == 'x' || format[i] == 'X')
 				count += ft_put_hex(va_arg(args, unsigned int), check_base(format[i]));
