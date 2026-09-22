@@ -48,20 +48,6 @@ functions answer **"how do I print it?"**.
   `%X`         Uppercase hexadecimal      ✅
   `%%`         Literal `%`                ✅
 
-### Not implemented yet
-
-The project currently does not implement the bonus formatting system:
-
--   `-`
--   `0`
--   `.`
--   field width
--   `#`
--   `+`
--   space
-
-These should be added only after the mandatory conversions are complete
-and well tested.
 
 ## Project Structure
 
@@ -233,11 +219,8 @@ The compiler flags currently used are:
 
 The library is built with `ar`.
 
-> **Important:** the current Makefile names the library `ftprintf.a`.
-> The 42/1337 project convention expects `libftprintf.a`, so this should
-> be corrected before evaluation.
 
-After correcting the name, a program can be linked with:
+The program can be linked with:
 
 ``` bash
 cc main.c libftprintf.a
@@ -328,150 +311,6 @@ ft_printf("100%%\n");
 
 Every conversion should be checked against the return value of the
 system `printf()` for the same defined input.
-
-## Current Review Notes
-
-The current code already has a good modular foundation, but before
-considering the mandatory part complete, the following items should be
-addressed:
-
-### 1. `%i` is missing
-
-The parser currently handles `%d` but not `%i`.
-
-The mandatory set includes both `%d` and `%i`, even though both print
-signed decimal integers.
-
-The parser should dispatch `%i` to the same integer-printing logic as
-`%d`.
-
-### 2. Library name
-
-The Makefile currently creates:
-
-``` text
-ftprintf.a
-```
-
-The expected project library name is:
-
-``` text
-libftprintf.a
-```
-
-### 3. `ft_putstr()` return type
-
-The current header declares:
-
-``` c
-size_t ft_putstr(char *s);
-```
-
-while the main character-count accumulator is an `int`.
-
-For a `printf`-style interface, keeping the helper return type as `int`
-makes the character-counting contract simpler and avoids signed/unsigned
-conversions.
-
-### 4. `ft_putchar()` argument type
-
-The current helper accepts:
-
-``` c
-int ft_putchar(char c);
-```
-
-while `%c` retrieves an `int` through `va_arg()`.
-
-A cleaner interface is to let the helper receive an `int` and
-convert/write the character internally. This also avoids
-narrowing-conversion warnings under stricter compiler settings.
-
-### 5. `%p` implementation
-
-The current pointer implementation uses `unsigned long` for the
-hexadecimal representation.
-
-This works on the target 64-bit Linux environment, but the
-representation is technically more portable when an integer type
-explicitly intended to hold converted pointer values is used.
-
-### 6. Parser organization
-
-The parser is currently correct in spirit and already has a useful
-architecture:
-
-``` text
-format string
-      ↓
-    parser
-      ↓
-conversion detection
-      ↓
-   va_arg()
-      ↓
-utility printer
-```
-
-As the bonus part is added, avoid turning the parser into a huge chain
-of nested `if/else` statements. A small conversion-dispatch layer will
-make flags, width, and precision much easier to add later.
-
-### 7. Error/edge-case policy
-
-Invalid conversions and malformed format strings are outside the normal
-mandatory conversion set. They should not be allowed to silently
-influence argument consumption.
-
-The important requirement is that every supported conversion consumes
-exactly the correct variadic argument type.
-
-## Mandatory Completion Checklist
-
--   [x] `%c`
--   [x] `%s`
--   [x] `%p`
--   [x] `%d`
--   [x] `%i`
--   [x] `%u`
--   [x] `%x`
--   [x] `%X`
--   [x] `%%`
--   [x] Correct library name: `libftprintf.a`
--   [x] Full mandatory test suite
--   [ ] Norminette clean
--   [ ] Memory/UB checks
--   [ ] Return-value comparison against `printf`
-
-## Bonus Roadmap
-
-After the mandatory part is stable:
-
-1.  Parse flags.
-2.  Parse field width.
-3.  Parse precision.
-4.  Define a conversion-state structure.
-5.  Implement `-` and `0`.
-6.  Implement precision for numeric/string conversions.
-7.  Implement `#`.
-8.  Implement `+`.
-9.  Implement space.
-10. Test combinations such as:
-
-``` text
-%10d
-%-10d
-%010d
-%.5d
-%+d
-% d
-%#x
-%#X
-%-#10x
-%+010d
-```
-
-Do not start the bonus until the mandatory conversion layer is reliable.
 
 ## What This Project Teaches
 
